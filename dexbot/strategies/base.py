@@ -677,7 +677,11 @@ class StrategyBase(Storage, StateMachine, Events):
                 else:
                     return '0.0'
             else:
-                return float(self.ticker().get('highestBid'))
+                try:
+                    return float(self.ticker().get('highestBid'))
+                except ValueError:
+                    # Market is empty
+                    return False
 
         # Like get_market_sell_price(), but defaulting to base_amount if both base and quote are specified.
         asset_amount = base_amount
@@ -785,7 +789,11 @@ class StrategyBase(Storage, StateMachine, Events):
                 else:
                     return '0.0'
             else:
-                return float(self.ticker().get('lowestAsk'))
+                try:
+                    return float(self.ticker().get('lowestAsk'))
+                except ValueError:
+                    # Market is empty
+                    return False
 
         asset_amount = quote_amount
 
