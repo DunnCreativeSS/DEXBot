@@ -216,8 +216,6 @@ class WorkerController:
             private_key = self.view.private_key_input.text()
             if not self.validate_account_name(account):
                 error_texts.append("Account doesn't exist.")
-            if not self.validate_account_not_in_use(account):
-                error_texts.append('Use a different account. "{}" is already in use.'.format(account))
             if not self.validate_private_key(account, private_key):
                 error_texts.append('Private key is invalid.')
             elif private_key and not self.validate_private_key_type(account, private_key):

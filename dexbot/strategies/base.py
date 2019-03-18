@@ -419,10 +419,10 @@ class StrategyBase(Storage, StateMachine, Events):
     def cancel_all_orders(self):
         """ Cancel all orders of the worker's account
         """
-        self.log.info('Canceling all orders')
+        self.log.info('Canceling market orders')
 
-        if self.all_own_orders:
-            self.cancel_orders(self.all_own_orders)
+        if self.get_own_orders:
+            self.cancel_orders(self.get_own_orders)
 
         self.log.info("Orders canceled")
 
